@@ -6,24 +6,44 @@
     tools:context=".MainActivity"
     >
 
+    <Button
+        android:id="@+id/button_his"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginEnd="9dp"
+        android:layout_toStartOf="@+id/result_tv"
+        android:backgroundTint="#DC3B09"
+        android:text="H"
+        android:textSize="20dp" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/solutions_tv"
+        android:layout_width="380dp"
+        android:layout_height="36dp"
         android:layout_above="@+id/result_tv"
-        android:textSize="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="15dp"
         android:textAlignment="textEnd"
         android:textColor="#A39898"
-        android:layout_margin="15dp">
-    </TextView>
+        android:textSize="35dp"></TextView>
 
     <TextView
         android:id="@+id/result_tv"
-        android:layout_width="match_parent"
+        android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttons_layout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
         android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/black"

@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnDivide, btnMultiply, btnSubstract, btnAdd, btnEquals;
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     Button btnAC, btnDot;
+    Button btnHis;
+    String hisCalc;
 
     void assignId(Button btn, int id){
         btn = findViewById(id);
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         assignId(btn9, R.id.button_9);
         assignId(btnAC, R.id.button_ac);
         assignId(btnDot, R.id.button_dot);
+        assignId(btnHis, R.id.button_his);
 
     }
 
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btn = (Button) v;
         String btnText = btn.getText().toString();
         String datatoCal = solutionTv.getText().toString();
+        Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+
 
         if(btnText.equals("AC")){
             solutionTv.setText("");
@@ -71,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(btnText.equals("=")){
 
             solutionTv.setText(resultTV.getText());
+            hisCalc += datatoCal.toString() + "=" + resultTV.getText().toString();
             return;
         }
         if(btnText.equals("C")){
@@ -81,6 +89,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 datatoCal += btnText;
             }
+        }
+        if(btnText.equals("H")){
+            solutionTv.setText("");
+            intent.putExtra("H", hisCalc);
+            startActivity(intent);
+            return;
         }
 
         solutionTv.setText(datatoCal);
@@ -107,5 +121,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch(Exception e){
             return "Error";
         }
+    }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("solution",solutionTv.getText().toString());
+        outState.putString("result",resultTV.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        solutionTv.setText(savedInstanceState.getString("solution"));
+        resultTV.setText(savedInstanceState.getString("result"));
     }
 }
